@@ -1,4 +1,4 @@
-using Laba1API.Data_Access_Layer;
+п»їusing Laba1API.Data_Access_Layer;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -6,17 +6,17 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 
-// Создаем объект builder
+// РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ builder
 var builder = WebApplication.CreateBuilder(args);
-// Добавляем контроллеры в сервисы
+// Р”РѕР±Р°РІР»СЏРµРј РєРѕРЅС‚СЂРѕР»Р»РµСЂС‹ РІ СЃРµСЂРІРёСЃС‹
 builder.Services.AddControllers();
-// Добавляем в сервисы возможность API Explorer для конечных точек
+// Р”РѕР±Р°РІР»СЏРµРј РІ СЃРµСЂРІРёСЃС‹ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ API Explorer РґР»СЏ РєРѕРЅРµС‡РЅС‹С… С‚РѕС‡РµРє
 builder.Services.AddEndpointsApiExplorer();
-// Добавляем аутентификацию через JWT
+// Р”РѕР±Р°РІР»СЏРµРј Р°СѓС‚РµРЅС‚РёС„РёРєР°С†РёСЋ С‡РµСЂРµР· JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
 {
-    // Настраиваем параметры проверки токена
+    // РќР°СЃС‚СЂР°РёРІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РїСЂРѕРІРµСЂРєРё С‚РѕРєРµРЅР°
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -28,12 +28,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecretKeyKeySecret"))
     };
 });
-// Добавляем Swagger для документирования API
+// Р”РѕР±Р°РІР»СЏРµРј Swagger РґР»СЏ РґРѕРєСѓРјРµРЅС‚РёСЂРѕРІР°РЅРёСЏ API
 builder.Services.AddSwaggerGen(option =>
 {
-    // Указываем информацию о документации API
+    // РЈРєР°Р·С‹РІР°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё API
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "Laba1 API", Version = "v1" });
-    // Добавляем описание авторизации через токен в Swagger UI
+    // Р”РѕР±Р°РІР»СЏРµРј РѕРїРёСЃР°РЅРёРµ Р°РІС‚РѕСЂРёР·Р°С†РёРё С‡РµСЂРµР· С‚РѕРєРµРЅ РІ Swagger UI
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -43,7 +43,7 @@ builder.Services.AddSwaggerGen(option =>
         BearerFormat = "JWT",
         Scheme = "Bearer"
     });
-    // Добавляем описание требований к авторизации через токен в Swagger UI
+    // Р”РѕР±Р°РІР»СЏРµРј РѕРїРёСЃР°РЅРёРµ С‚СЂРµР±РѕРІР°РЅРёР№ Рє Р°РІС‚РѕСЂРёР·Р°С†РёРё С‡РµСЂРµР· С‚РѕРєРµРЅ РІ Swagger UI
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -60,21 +60,21 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
-// Собираем объект приложения
+// РЎРѕР±РёСЂР°РµРј РѕР±СЉРµРєС‚ РїСЂРёР»РѕР¶РµРЅРёСЏ
 var app = builder.Build();
 
-// Если мы находимся в режиме разработки
+// Р•СЃР»Рё РјС‹ РЅР°С…РѕРґРёРјСЃСЏ РІ СЂРµР¶РёРјРµ СЂР°Р·СЂР°Р±РѕС‚РєРё
 if (app.Environment.IsDevelopment())
 {
-    // Используем Swagger и SwaggerUI
+    // РСЃРїРѕР»СЊР·СѓРµРј Swagger Рё SwaggerUI
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-// Перенаправляем HTTP запросы на HTTPS
+// РџРµСЂРµРЅР°РїСЂР°РІР»СЏРµРј HTTP Р·Р°РїСЂРѕСЃС‹ РЅР° HTTPS
 app.UseHttpsRedirection();
-// Добавляем использование авторизации
+// Р”РѕР±Р°РІР»СЏРµРј РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Р°РІС‚РѕСЂРёР·Р°С†РёРё
 app.UseAuthorization();
-// Добавляем маршрут для контроллеров
+// Р”РѕР±Р°РІР»СЏРµРј РјР°СЂС€СЂСѓС‚ РґР»СЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРІ
 app.MapControllers();
-// Запускаем приложение
+// Р—Р°РїСѓСЃРєР°РµРј РїСЂРёР»РѕР¶РµРЅРёРµ
 app.Run();

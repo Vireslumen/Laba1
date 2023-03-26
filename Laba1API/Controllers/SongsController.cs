@@ -1,4 +1,4 @@
-using Laba1API.Data_Access_Layer;
+п»їusing Laba1API.Data_Access_Layer;
 using Laba1API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,21 +10,21 @@ namespace Laba1API.Controllers
     [Route("[controller]")]
     public class SongsController : ControllerBase
     {
-        // Инициализируем репозиторий.
+        // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СЂРµРїРѕР·РёС‚РѕСЂРёР№.
         IUserRepository repository = new UserRepository(@"Data Source=.\SQLEXPRESS;Database=LABA1;Integrated Security=SSPI");
 
         /// <summary>
-        /// Получение песен, которые исполнил клиент с определенным email
+        /// РџРѕР»СѓС‡РµРЅРёРµ РїРµСЃРµРЅ, РєРѕС‚РѕСЂС‹Рµ РёСЃРїРѕР»РЅРёР» РєР»РёРµРЅС‚ СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј email
         /// </summary>
         /// <param name="email">Email</param>
-        /// <returns>Список песен в JSON</returns>
+        /// <returns>РЎРїРёСЃРѕРє РїРµСЃРµРЅ РІ JSON</returns>
         [HttpGet]
         public string Get(string email)
         {
             try
             {
                 List<Song> songs = repository.GetSongsByEmail(email);
-                // Сериализуем объекты в JSON.
+                // РЎРµСЂРёР°Р»РёР·СѓРµРј РѕР±СЉРµРєС‚С‹ РІ JSON.
                 var json = JsonSerializer.Serialize(songs);
                 return json.ToString();
             }
