@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Laba1API", "Laba1API\Laba1API.csproj", "{FDB1CB61-3C70-4188-BB53-1120119A29BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LABA1Client", "..\LABA1Client\LABA1Client\LABA1Client.csproj", "{6CC3E1D0-296C-42BD-B0C9-6E58CA8CFFA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LABA1Client", "LABA1Client\LABA1Client.csproj", "{9A713AA4-C2DF-48AE-8A97-D1366CE88C01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{FDB1CB61-3C70-4188-BB53-1120119A29BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDB1CB61-3C70-4188-BB53-1120119A29BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDB1CB61-3C70-4188-BB53-1120119A29BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CC3E1D0-296C-42BD-B0C9-6E58CA8CFFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CC3E1D0-296C-42BD-B0C9-6E58CA8CFFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CC3E1D0-296C-42BD-B0C9-6E58CA8CFFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CC3E1D0-296C-42BD-B0C9-6E58CA8CFFA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A713AA4-C2DF-48AE-8A97-D1366CE88C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A713AA4-C2DF-48AE-8A97-D1366CE88C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A713AA4-C2DF-48AE-8A97-D1366CE88C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A713AA4-C2DF-48AE-8A97-D1366CE88C01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
