@@ -43,7 +43,7 @@ namespace Laba1API.Data_Access_Layer
         /// <returns>Список клиентов</returns>
         public List<Song> GetSongsByEmail(string email)
         {
-            return _dbConnection.Query<Song>($"SELECT s.title AS song_title, al.title AS album_title, ar.name AS artist_name, s.duration AS song_duration\r\nFROM Clients c\r\nINNER JOIN Orders o ON c.client_id = o.client_id\r\nINNER JOIN Albums al ON o.album_id = al.album_id\r\nINNER JOIN Songs s ON al.album_id = s.album_id\r\nINNER JOIN Artists ar ON s.artist_id = ar.artist_id\r\nWHERE c.email = '{email}'\r\nGROUP BY s.title, al.title, ar.name, s.duration;").ToList();
+            return _dbConnection.Query<Song>($"SELECT s.title AS song_title, al.title AS album_title, ar.name AS artist_name, s.duration AS song_duration FROM Clients c INNER JOIN Orders o ON c.client_id = o.client_id INNER JOIN Albums al ON o.album_id = al.album_id INNER JOIN Songs s ON al.album_id = s.album_id INNER JOIN Artists ar ON s.artist_id = ar.artist_id WHERE c.email = '{email}' GROUP BY s.title, al.title, ar.name, s.duration;").ToList();
         }
 
         /// <summary>
@@ -66,7 +66,6 @@ namespace Laba1API.Data_Access_Layer
         /// <returns>Список клиентов после добавления</returns>
         public List<Client> AddClient(string name, string email, string phone, string address)
         {
-            
             return _dbConnection.Query<Client>($"INSERT INTO Clients (name, email, phone, address) VALUES ( '{name}', '{email}', '{phone}', '{address}') SELECT c.name, c.email, c.phone, c.address FROM Clients c").ToList();
         }
 

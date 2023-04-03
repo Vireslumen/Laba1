@@ -27,10 +27,17 @@ namespace Laba1API.Controllers
         [HttpGet]
         public string Get(string email, string album, DateTime date)
         {
-            List<Order> clients = repository.AddOrder(email, album, date);
-            // Сериализуем объекты в JSON.
-            var json = JsonSerializer.Serialize(clients);
-            return json.ToString();
+            try
+            {
+                List<Order> clients = repository.AddOrder(email, album, date);
+                // Сериализуем объекты в JSON.
+                var json = JsonSerializer.Serialize(clients);
+                return json.ToString();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }
